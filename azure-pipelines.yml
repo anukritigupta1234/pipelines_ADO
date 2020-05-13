@@ -7,7 +7,8 @@
 resources:
  pipelines:
      - pipeline: my_pipeline
-       source: anukritigupta1234.helloworld
+       source: anukritigupta1234.hello-world
+       project: t1
        trigger: true
 
       
@@ -17,6 +18,15 @@ trigger:
 
 pool: default
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+# steps:
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
+
+stages:
+ - stage: ProduceArtifact
+   jobs:
+     - job: J4
+       pool: 
+        name: Default
+       steps:
+         - download: my_pipeline
